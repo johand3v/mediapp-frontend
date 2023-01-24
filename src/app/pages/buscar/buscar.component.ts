@@ -47,7 +47,7 @@ export class BuscarComponent implements OnInit {
       /*
      {
        dni : '54254851'
-       nombreCompleto: xxxxx      
+       nombreCompleto: xxxxx
      }
      */
      if (filtro.dni.length === 0) {
