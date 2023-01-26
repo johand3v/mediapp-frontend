@@ -19,6 +19,7 @@ export class PacienteComponent implements OnInit {
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  cantidad: number = 0;
 
   constructor(
     private pacienteService: PacienteService,
@@ -35,9 +36,14 @@ export class PacienteComponent implements OnInit {
       this.crearTabla(data);
     });
 
-    this.pacienteService.listar().subscribe(data => {
-      this.crearTabla(data);
+    this.pacienteService.listarPageable(0, 10).subscribe(data => {
+      this.cantidad = data.totalElements;
+      this.dataSource = new MatTableDataSource(data.content);
     });
+
+    /*this.pacienteService.listar().subscribe(data => {
+      this.crearTabla(data);
+    });*/
   }
 
   eliminar(id: number) {
@@ -60,4 +66,10 @@ export class PacienteComponent implements OnInit {
     this.dataSource.filter = e.target.value.trim().toLowerCase();
   }
 
+  mostrarMas(e: any){
+    this.pacienteService.listarPageable(e.pageIndex, e.pageSize).subscribe(data => {
+      this.cantidad = data.totalElements;
+      this.dataSource = new MatTableDataSource(data.content);
+    });
+  }
 }

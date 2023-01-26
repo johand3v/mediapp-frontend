@@ -19,6 +19,10 @@ export class PacienteService extends GenericService<Paciente>{
       `${environment.HOST}/pacientes`);
   }
 
+  listarPageable(p: number, s:number){
+    return this.http.get<any>(`${this.url}/pageable?page=${p}&size=${s}`);
+  }
+
   //private url: string = `${environment.HOST}/pacientes`;
 
   //constructor(private http: HttpClient) { }
