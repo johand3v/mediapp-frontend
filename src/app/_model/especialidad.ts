@@ -1,5 +1,5 @@
 export class Especialidad {
-  idEspecialidad: number;
-  nombre: string;
-  descripcion: string;
+    idEspecialidad: number;
+    nombre: string;
+    descripcion: string;
 }

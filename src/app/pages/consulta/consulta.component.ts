@@ -125,8 +125,7 @@ export class ConsultaComponent implements OnInit {
     consulta.fecha = moment(this.fechaSeleccionada).format('YYYY-MM-DDTHH:mm:ss');
     consulta.detalleConsulta = this.detalleConsulta;
 
-    //let dto: ConsultaListaExamenDTO = new ConsultaListaExamenDTO();
-    let dto: ConsultaListaExamenDTO; //ESTE EL NUEVO
+    let dto: ConsultaListaExamenDTO = new ConsultaListaExamenDTO();
     dto.consulta = consulta;
     dto.lstExamen = this.examenesSeleccionados;
 

@@ -47,7 +47,7 @@ export class ConsultaService {
   guardarArchivo(data: File) { //medico: Medico
     let formdata: FormData = new FormData;
     formdata.append('adjunto', data);
-    //let medicoBlob = new Blob([JSON.stringify(medico)], { type: "application/json" });
+    //let medicoBlob = new Blob([JSON.stringify(medico)], { type: "application/json" }); 
     //formdata.append('medico', medicoBlob);
 
     return this.http.post(`${this.url}/guardarArchivo`, formdata);

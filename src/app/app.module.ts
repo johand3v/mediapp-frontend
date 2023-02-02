@@ -23,35 +23,50 @@ import { BuscarComponent } from './pages/buscar/buscar.component';
 import { BuscarDialogoComponent } from './pages/buscar/buscar-dialogo/buscar-dialogo.component';
 import { ReporteComponent } from './pages/reporte/reporte.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { LoginComponent } from './pages/login/login.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { JwtModule } from "@auth0/angular-jwt";
+import { environment } from 'src/environments/environment';
+
+export function tokenGetter() {
+  return sessionStorage.getItem(environment.TOKEN_NAME);
+}
 
 @NgModule({
   declarations: [
     AppComponent,
-    PacienteComponent,
-    MedicoComponent,
-    PacienteEdicionComponent,
-    MedicoDialogoComponent,
-    EspecialidadComponent,
-    EspecialidadEdicionComponent,
-    ExamenComponent,
-    ExamenEdicionComponent,
-    ConsultaComponent,
-    ConsultaEspecialComponent,
-    ConsultaWizardComponent,
-    BuscarComponent,
-    BuscarDialogoComponent,
-    ReporteComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatIconModule,
+    MatDividerModule,
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatSnackBarModule,
     HttpClientModule,
-    MaterialModule,
-    ReactiveFormsModule,
     FormsModule,
-    FlexLayoutModule,
-    PdfViewerModule
+    ReactiveFormsModule,
+
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: [environment.HOST.substring(7)],
+        disallowedRoutes: [`http://${environment.HOST.substring(7)}/login/enviarCorreo`],
+      },
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

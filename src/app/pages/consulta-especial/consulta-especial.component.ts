@@ -80,7 +80,7 @@ export class ConsultaEspecialComponent implements OnInit {
 
   }
 
-  filtrarPacientes(val: any) {
+  filtrarPacientes(val: any) {    
     if (val != null && val.idPaciente > 0) {
       return this.pacientes.filter(el =>
         el.nombres.toLowerCase().includes(val.nombres.toLowerCase()) || el.apellidos.toLowerCase().includes(val.apellidos.toLowerCase()) || el.dni.includes(val.dni)
@@ -196,8 +196,7 @@ export class ConsultaEspecialComponent implements OnInit {
     consulta.fecha = moment(this.form.value['fecha']).format('YYYY-MM-DDTHH:mm:ss');
     consulta.detalleConsulta = this.detalleConsulta;
 
-    //let consultaListaExamenDTO = new ConsultaListaExamenDTO();
-    let consultaListaExamenDTO; //NUEVO
+    let consultaListaExamenDTO = new ConsultaListaExamenDTO();
     consultaListaExamenDTO.consulta = consulta;
     consultaListaExamenDTO.lstExamen = this.examenesSeleccionados;
 
@@ -215,7 +214,7 @@ export class ConsultaEspecialComponent implements OnInit {
     this.detalleConsulta = [];
     this.examenesSeleccionados = [];
     this.diagnostico = '';
-    this.tratamiento = '';
+    this.tratamiento = '';    
     this.pacienteSeleccionado = null;
     this.especialidadSeleccionada = null;
     this.medicoSeleccionado = null;
@@ -225,7 +224,7 @@ export class ConsultaEspecialComponent implements OnInit {
     this.fechaSeleccionada.setMinutes(0);
     this.fechaSeleccionada.setSeconds(0);
     this.fechaSeleccionada.setMilliseconds(0);
-    this.mensaje = '';
+    this.mensaje = '';    
     //para autocompletes
     this.myControlPaciente.reset();
     this.myControlMedico.reset();

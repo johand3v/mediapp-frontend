@@ -37,7 +37,7 @@ export class ReporteComponent implements OnInit {
     let reader = new FileReader();
     reader.readAsDataURL(data);
     reader.onloadend = () => {
-      let base64 = reader.result;
+      let base64 = reader.result;      
       this.sanar(base64);
     }
   }

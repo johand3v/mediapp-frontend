@@ -53,7 +53,7 @@ export class ConsultaWizardComponent implements OnInit {
   consultorioSeleccionado: number = 0;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder,    
     private pacienteService: PacienteService,
     private especialidadService: EspecialidadService,
     private medicoService: MedicoService,
@@ -71,7 +71,7 @@ export class ConsultaWizardComponent implements OnInit {
     });
 
     this.segundoFormGroup = this.formBuilder.group({
-
+      
     });
 
     this.listarPacientes();
@@ -80,27 +80,27 @@ export class ConsultaWizardComponent implements OnInit {
     this.listarEspecialidad();
     this.listarConsultorios();
   }
-
+  
   seleccionarConsultorio(c: number) {
     this.consultorioSeleccionado = c;
   }
 
   listarConsultorios() {
-    for (let i = 1; i <= 100; i++) {
+    for (let i = 1; i <= 100; i++) {      
       this.consultorios.push(i);
     }
   }
 
   seleccionarPaciente(e: any) {
     this.pacienteSeleccionado = e.value;
-  }
+  }  
 
   seleccionarEspecialidad(e: any) {
     this.especialidadSeleccionada = e.value;
   }
 
   listarPacientes() {
-    this.pacienteService.listar().subscribe(data => {
+    this.pacienteService.listar().subscribe(data => {      
       this.pacientes = data;
     });
   }
@@ -169,7 +169,7 @@ export class ConsultaWizardComponent implements OnInit {
   }
 
   seleccionarMedico(medico: Medico) {
-    this.medicoSeleccionado = medico;
+    this.medicoSeleccionado = medico;    
   }
 
   nextManualStep() {
@@ -184,7 +184,7 @@ export class ConsultaWizardComponent implements OnInit {
   estadoBotonRegistrar() {
     return (this.detalleConsulta.length === 0 || this.especialidadSeleccionada === undefined || this.medicoSeleccionado === undefined || this.pacienteSeleccionado === undefined || this.consultorioSeleccionado === 0);
   }
-
+  
   registrar() {
     let consulta = new Consulta();
     consulta.especialidad = this.especialidadSeleccionada;
@@ -194,8 +194,7 @@ export class ConsultaWizardComponent implements OnInit {
     consulta.detalleConsulta = this.detalleConsulta;
     consulta.numConsultorio = `C${this.consultorioSeleccionado}`;
 
-    //let consultaListaExamenDTO = new ConsultaListaExamenDTO();
-    let consultaListaExamenDTO; //NUEVO
+    let consultaListaExamenDTO = new ConsultaListaExamenDTO();
     consultaListaExamenDTO.consulta = consulta;
     consultaListaExamenDTO.lstExamen = this.examenesSeleccionados;
 
